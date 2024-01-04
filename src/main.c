@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:51:54 by tcharuel          #+#    #+#             */
-/*   Updated: 2023/12/06 14:04:30 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/04 17:32:22 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,22 @@
 
 int	main(void)
 {
-	void *mlx;                                                 // display
-	void *mlx_win;                                             // window
-	t_data image;                                              // image
-	mlx = mlx_init();                                          // display init
-	mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!"); // window init
-	image.img = mlx_new_image(mlx, 1920, 1080);                // image init
+	void	*mlx;
+	void	*win;
+
+	// Initialiser la connexion avec le système graphique
+	mlx = mlx_init();
+	// Vérifier si l'initialisation a réussi
+	if (!mlx)
+		return (1);
+
+	// Créer une nouvelle fenêtre graphique
+	win = mlx_new_window(mlx, 800, 600, "Ma fenetre MiniLibX");
+	// Vérifier si la création de la fenêtre a réussi
+	if (!win)
+		return (1);
+
+	// Lancer la boucle d'événements pour traiter les entrées utilisateur
+	mlx_loop(mlx);
+	return (0);
 }

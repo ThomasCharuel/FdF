@@ -6,14 +6,14 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:59:01 by tcharuel          #+#    #+#             */
-/*   Updated: 2023/12/06 14:04:36 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/04 17:35:44 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-# include <mlx.h>
-# include "libft/libft.h"
+# include "mlx.h"
+# include "../libft/libft.h"
 
 #endif

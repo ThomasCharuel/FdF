@@ -6,33 +6,47 @@
 #    By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 13:51:51 by tcharuel          #+#    #+#              #
-#    Updated: 2023/12/06 14:01:54 by tcharuel         ###   ########.fr        #
+#    Updated: 2024/01/04 17:37:23 by tcharuel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fdf
 
-SRC = $(addprefix src/, main.c)
-OBJ := $(SRC:%.c=%.o)
+HEADER_DIR = includes
+SRC_DIR = src
+OBJ_DIR = obj
+
+SRC_FILES = main.c
+
+SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
+
+MLX_DIR = ../minilibx
 
 LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 CC = cc
-CCFLAGS = -Wextra -Wall -Werror
+CFLAGS = -Wextra -Wall -Werror
 RM = rm -f
 
 all: $(NAME)
 
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER_DIR)/$(NAME).h | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I$(HEADER_DIR)/ -c -o $@ $<
+
 $(NAME): $(LIBFT) $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT_DIR) -lft -o $@
+	$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lmlx -lXext -lX11 -o $@
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 clean:
 	make -C $(LIBFT_DIR) clean
-	$(RM) $(OBJ)
+	$(RM) -r $(OBJ_DIR)
 
 fclean: clean
 	make -C $(LIBFT_DIR) fclean

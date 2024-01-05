@@ -3,3 +3,4 @@ fdf
 *.o
 *.a
 test_maps
+*.sh

@@ -1,16 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   ft_free_strs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 18:12:56 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/04 18:13:40 by tcharuel         ###   ########.fr       */
+/*   Created: 2024/01/05 14:57:45 by tcharuel          #+#    #+#             */
+/*   Updated: 2024/01/05 14:58:31 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	create_trgb(int t, int r, int g, int b)
+#include "libft.h"
+
+void	ft_free_strs(char **strs)
 {
-	return (t << 24 | r << 16 | g << 8 | b);
+	int	i;
+
+	i = 0;
+	while (strs[i])
+	{
+		free(strs[i]);
+		i++;
+	}
+	free(strs);
 }

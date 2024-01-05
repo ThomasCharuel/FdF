@@ -6,13 +6,14 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:01:58 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/05 11:38:04 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/05 14:59:10 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include <fcntl.h>
 # include <limits.h>
 # include <stdarg.h>
 # include <stdint.h>
@@ -133,5 +134,7 @@ size_t				ft_strlen_delimiter(const char *s, char c);
 char				*ft_strdup_lf(const char *src);
 int					ft_str_has_lf(char const *s);
 void				ft_strcpy(char *dst, const char *src);
+
+void				ft_free_strs(char **strs);
 
 #endif

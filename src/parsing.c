@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 11:47:25 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/05 18:31:44 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:59:32 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,16 @@ int	check_line(char *line)
 	return (SUCCESS);
 }
 
-int	*line_to_int_list(char *line, int length)
+t_point	*line_to_point_list(char *line, int length)
 {
 	char	**elements;
-	int		*res;
+	t_point	*res;
 	int		i;
 
 	elements = ft_split(line, ' ');
 	if (!elements)
 		return (NULL);
-	res = (int *)malloc(length * sizeof(int));
+	res = (t_point *)malloc(length * sizeof(t_point));
 	if (!res)
 	{
 		ft_free_strs(elements);
@@ -67,7 +67,7 @@ int	*line_to_int_list(char *line, int length)
 	i = 0;
 	while (elements[i])
 	{
-		res[i] = ft_atoi(elements[i]);
+		res[i].z = ft_atoi(elements[i]);
 		i++;
 	}
 	ft_free_strs(elements);
@@ -76,21 +76,21 @@ int	*line_to_int_list(char *line, int length)
 
 int	add_line_to_map(t_map *map, char *line)
 {
-	int	**new_map;
+	t_point	**new_map;
 
 	if (check_line(line) == ERROR || compute_width(line) != map->width)
 		return (ERROR);
 	map->height++;
-	new_map = (int **)malloc(map->height * sizeof(int *));
+	new_map = (t_point **)malloc(map->height * sizeof(t_point *));
 	if (!new_map)
 		return (ERROR);
 	if (map->height > 1)
 	{
-		ft_memcpy(new_map, map->map, (map->height - 1) * sizeof(int *));
+		ft_memcpy(new_map, map->map, (map->height - 1) * sizeof(t_point *));
 		free(map->map);
 	}
 	map->map = new_map;
-	map->map[map->height - 1] = line_to_int_list(line, map->width);
+	map->map[map->height - 1] = line_to_point_list(line, map->width);
 	if (!map->map[map->height - 1])
 		return (ERROR);
 	return (SUCCESS);

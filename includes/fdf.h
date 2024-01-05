@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:59:01 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/05 18:34:30 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/05 19:19:46 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@
 # define ERROR -1
 # define SUCCESS 0
 
+typedef struct s_point
+{
+	int		projected_x;
+	int		projected_y;
+	int		z;
+}			t_point;
+
 typedef struct s_data
 {
 	void	*img;
@@ -39,7 +46,7 @@ typedef struct s_data
 
 typedef struct s_map
 {
-	int		**map;
+	t_point	**map;
 	int		width;
 	int		height;
 }			t_map;

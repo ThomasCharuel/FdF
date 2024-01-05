@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:02:27 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/05 18:34:38 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:56:03 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ int	init_state(t_state *state)
 	return (SUCCESS);
 }
 
-void	cleanup_map(int **map, int length)
+void	cleanup_map(t_map map)
 {
 	int	i;
 
 	i = 0;
-	while (i < length)
+	while (i < map.height)
 	{
-		free(map[i]);
+		free(map.map[i]);
 		i++;
 	}
-	free(map);
+	free(map.map);
 }
 
 void	cleanup_state(t_state *state)
@@ -55,7 +55,7 @@ void	cleanup_state(t_state *state)
 	if (state->img.img)
 		mlx_destroy_image(state->mlx, state->img.img);
 	if (state->map.map)
-		cleanup_map(state->map.map, state->map.height);
+		cleanup_map(state->map);
 	if (state->mlx)
 	{
 		mlx_destroy_display(state->mlx);

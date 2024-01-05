@@ -6,7 +6,7 @@
 #    By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 13:51:51 by tcharuel          #+#    #+#              #
-#    Updated: 2024/01/04 18:14:03 by tcharuel         ###   ########.fr        #
+#    Updated: 2024/01/05 11:07:09 by tcharuel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ HEADER_DIR = includes
 SRC_DIR = src
 OBJ_DIR = obj
 
-SRC_FILES = main.c draw.c utils.c
+SRC_FILES = main.c draw.c utils.c hooks.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))

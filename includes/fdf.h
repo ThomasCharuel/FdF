@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:59:01 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/04 18:24:06 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/05 11:07:00 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include "../libft/libft.h"
 # include "mlx.h"
+# include <X11/X.h>
+# include <X11/keysym.h>
 
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
@@ -28,8 +30,18 @@ typedef struct s_data
 	int		endian;
 }			t_data;
 
-void		my_mlx_pixel_put(t_data *data, int x, int y, int color);
+typedef struct s_state
+{
+	void	*mlx;
+	void	*win;
+	t_data	img;
+}			t_state;
+
+void		image_put_pixel(t_data *data, int x, int y, int color);
 
 int			create_trgb(int t, int r, int g, int b);
+
+int			cleanup_exit(t_state *state);
+int			handle_key_hook(int keycode, t_state *state);
 
 #endif

@@ -1,21 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   hooks.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/04 18:03:46 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/05 10:08:03 by tcharuel         ###   ########.fr       */
+/*   Created: 2024/01/05 11:06:00 by tcharuel          #+#    #+#             */
+/*   Updated: 2024/01/05 11:06:19 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-void	image_put_pixel(t_data *data, int x, int y, int color)
+int	cleanup_exit(t_state *state)
 {
-	char	*dst;
+	mlx_destroy_window(state->mlx, state->win);
+	mlx_destroy_image(state->mlx, state->img.img);
+	exit(0);
+}
 
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
+int	handle_key_hook(int keycode, t_state *state)
+{
+	if (keycode == XK_Escape)
+	{
+		cleanup_exit(state);
+	}
+	return (0);
 }

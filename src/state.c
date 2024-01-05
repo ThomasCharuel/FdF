@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:02:27 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/05 14:21:33 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:34:38 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	init_state(t_state *state)
 	state->map.map = NULL;
 	state->map.width = 0;
 	state->map.height = 0;
+	state->angle = 0;
 	state->mlx = mlx_init();
 	if (!state->mlx)
 		return (ERROR);
@@ -34,18 +35,17 @@ int	init_state(t_state *state)
 	return (SUCCESS);
 }
 
-void	cleanup_map(t_map *map)
+void	cleanup_map(int **map, int length)
 {
 	int	i;
 
 	i = 0;
-	while (i < map->height)
+	while (i < length)
 	{
-		free(map->map[i]);
+		free(map[i]);
 		i++;
 	}
-	free(map->map);
-	map->map = NULL;
+	free(map);
 }
 
 void	cleanup_state(t_state *state)
@@ -55,7 +55,7 @@ void	cleanup_state(t_state *state)
 	if (state->img.img)
 		mlx_destroy_image(state->mlx, state->img.img);
 	if (state->map.map)
-		cleanup_map(&(state->map));
+		cleanup_map(state->map.map, state->map.height);
 	if (state->mlx)
 	{
 		mlx_destroy_display(state->mlx);

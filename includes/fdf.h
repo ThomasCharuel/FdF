@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:59:01 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/05 14:56:43 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:34:30 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 # define FDF_H
 
 # include "../libft/includes/libft.h"
-# include "mlx.h"
+# include "/home/tcharuel/Desktop/minilibx/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <errno.h>
+# include <math.h>
 # include <stdio.h>
 # include <string.h>
 
@@ -49,6 +50,7 @@ typedef struct s_state
 	void	*win;
 	t_data	img;
 	t_map	map;
+	int		angle;
 }			t_state;
 
 int			init_state(t_state *state);

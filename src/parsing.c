@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 11:47:25 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/05 15:30:48 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/05 18:31:44 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ int	parse_map(char *file_path, t_map *map)
 	int		fd;
 	char	*line;
 
-	(void)map;
 	fd = open(file_path, O_RDONLY);
 	if (fd == -1)
 	{
@@ -125,7 +124,6 @@ int	parse_map(char *file_path, t_map *map)
 			close(fd);
 			return (ERROR);
 		}
-		printf("%s", line);
 		free(line);
 		line = get_next_line(fd);
 	}

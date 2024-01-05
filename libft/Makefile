@@ -6,13 +6,17 @@
 #    By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/02 13:33:40 by tcharuel          #+#    #+#              #
-#    Updated: 2023/12/04 11:33:08 by tcharuel         ###   ########.fr        #
+#    Updated: 2024/01/05 11:44:35 by tcharuel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-SOURCES = ft_isalpha.c \
+HEADER_DIR = includes
+SRC_DIR = src
+OBJ_DIR = obj
+
+SRC_FILES = ft_isalpha.c \
 	ft_isdigit.c \
 	ft_isalnum.c \
 	ft_isascii.c \
@@ -65,21 +69,26 @@ SOURCES = ft_isalpha.c \
 	ft_get_next_line.c \
 	ft_get_next_line_utils.c
 
-OBJECTS = $(SOURCES:.c=.o)
+SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
+OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS)
-	ar rcs $(NAME) $(OBJECTS)
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
-.c.o:
-	$(CC) $(CFLAGS) -c -I. $< -o ${<:.c=.o}
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER_DIR)/libft.h | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I$(HEADER_DIR)/ -c -o $@ $<
+
+$(NAME): $(OBJ)
+	ar rcs $(NAME) $(OBJ)
 
 clean:
-	$(RM) $(OBJECTS)
+	$(RM) -r $(OBJ_DIR)
 
 fclean: clean
 	$(RM) $(NAME)

@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:51:54 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/06 19:13:31 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/06 19:18:02 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,11 +152,12 @@ void	compute_and_draw(t_state state)
 			// 		+ (double)WINDOW_HEIGHT / 10.0);
 			state.map.map[y][x].double_x = x * 100.0;
 			state.map.map[y][x].double_y = y * 100.0;
+			state.map.map[y][x].z *= 33;
 			printf("%d, %d -> ", x, y);
 			angle = M_PI / 4;
 			// angle = 0.0;
 			rotate_z(&state.map.map[y][x], angle);
-			// rotate_x(&state.map.map[y][x], atan(sqrt(2)));
+			rotate_x(&state.map.map[y][x], atan(sqrt(2)));
 			printf("%f, %f\n", state.map.map[y][x].double_x,
 				state.map.map[y][x].double_y);
 			// state.map.map[y][x].double_x *= measure;

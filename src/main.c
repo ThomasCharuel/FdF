@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:51:54 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/06 19:18:02 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/06 20:38:54 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ void	rotate_z(t_point *point, double angle)
 
 	x = point->double_x;
 	y = point->double_y;
-	printf("Angle: %f\n", angle);
 	point->double_x = x * cos(angle) - y * sin(angle);
 	point->double_y = x * sin(angle) + y * cos(angle);
 }
@@ -122,50 +121,37 @@ void	compute_and_draw(t_state state)
 	double	measure;
 	int		x;
 	int		y;
-	double	angle;
+	int		offset_x;
+	int		offset_y;
 
-	measure = 4.0 * (double)WINDOW_HEIGHT / 5.0 / (double)state.map.height;
-	measure = 100.0;
+	// Il faut que le premier point soit a WINDOW_WIDTH / 10
+	// Il faut que le dernier point soit a WINDOW_WIDTH / 10 * 9
+	offset_x = WINDOW_WIDTH / 2;
+	offset_y = WINDOW_HEIGHT / 2;
+	if (state.map.width > 1)
+	{
+		measure = 4.0 * (double)WINDOW_WIDTH / 5.0 / ((double)state.map.width
+				- 1.0);
+	}
+	else
+	{
+		measure = 1;
+	}
 	y = 0;
 	while (y < state.map.height)
 	{
 		x = 0;
 		while (x < state.map.width)
 		{
-			// state.map.map[y][x].y = (int)(y * measure
-			// 		+ (double)WINDOW_HEIGHT / 10.0);
-			// state.map.map[y][x].x = (int)(x * measure
-			// 		+ (double)WINDOW_WIDTH / 10.0);
-			// state.map.map[x][y].x = (int)((double)(x
-			// 			- state.map.map[x][y].z) * cos(DEG_30) * measure
-			// 		+ (double)WINDOW_HEIGHT / 10.0);
-			// state.map.map[y][x].x = (int)((x - state.map.map[y][x].z)
-			// 		* cos(DEG_30) * measure + (double)WINDOW_WIDTH / 10.0);
-			// state.map.map[y][x].y = (int)((y + (x + state.map.map[y][x].z)
-			// 			* sin(DEG_30)) * measure + (double)WINDOW_HEIGHT
-			// 		/ 10.0);
-			// state.map.map[y][x].x = (int)((x - y) * cos(0.8)
-			// *measure
-			// 		+ (double)WINDOW_WIDTH / 10.0);
-			// state.map.map[y][x].y = (int)(((y + x) * sin(0.8)
-			// 			* measure - state.map.map[y][x].z)
-			// 		+ (double)WINDOW_HEIGHT / 10.0);
-			state.map.map[y][x].double_x = x * 100.0;
-			state.map.map[y][x].double_y = y * 100.0;
-			state.map.map[y][x].z *= 33;
-			printf("%d, %d -> ", x, y);
-			angle = M_PI / 4;
-			// angle = 0.0;
-			rotate_z(&state.map.map[y][x], angle);
+			state.map.map[y][x].double_x = x * measure;
+			state.map.map[y][x].double_y = y * measure;
+			state.map.map[y][x].z *= measure;
+			rotate_z(&state.map.map[y][x], state.angle);
 			rotate_x(&state.map.map[y][x], atan(sqrt(2)));
-			printf("%f, %f\n", state.map.map[y][x].double_x,
-				state.map.map[y][x].double_y);
-			// state.map.map[y][x].double_x *= measure;
-			// state.map.map[y][x].double_y *= measure;
-			state.map.map[y][x].x = (int)state.map.map[y][x].double_x + 2
-				* measure;
-			state.map.map[y][x].y = (int)state.map.map[y][x].double_y + 2
-				* measure;
+			state.map.map[y][x].x = (int)state.map.map[y][x].double_x
+				+ offset_x;
+			state.map.map[y][x].y = (int)state.map.map[y][x].double_y
+				+ offset_y;
 			if (x > 0)
 				draw_line(state, state.map.map[y][x], state.map.map[y][x - 1]);
 			if (y > 0)

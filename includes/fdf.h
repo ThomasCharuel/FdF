@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:59:01 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/06 20:39:16 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/06 22:52:34 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@
 
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
-// # define WINDOW_WIDTH 400
-// # define WINDOW_HEIGHT 500
 # define M_PI 3.14159265358979323846
-# define DEG_30 (M_PI / 6.0)
+# define ABS(_x) ((_x) >= 0 ? (_x) : -(_x))
+# define SGN(_x) ((_x) < 0 ? -1 : ((_x) > 0 ? 1 : 0))
+# define MOUSE_LEFT_CLICK 1
 
 # define ERROR -1
 # define SUCCESS 0
@@ -64,17 +64,24 @@ typedef struct s_state
 	t_data	img;
 	t_map	map;
 	double	angle;
+	int		translation_x;
+	int		translation_y;
 }			t_state;
 
 int			init_state(t_state *state);
 int			cleanup_exit(t_state *state);
 
-int			create_trgb(int t, int r, int g, int b);
+void		reset_image(t_state state);
 void		image_put_pixel(t_data *data, int x, int y, int color);
+void		compute_and_draw(t_state state);
 
 int			cleanup_exit(t_state *state);
+
+int			handle_mouse_hook(int button, int x, int y, t_state *state);
 int			handle_key_hook(int keycode, t_state *state);
 
 int			parse_map(char *file_path, t_map *map);
+
+void		draw_line(t_state state, t_point start, t_point dest);
 
 #endif

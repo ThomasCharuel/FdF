@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:51:54 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/06 20:38:54 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/06 21:59:32 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,17 +126,17 @@ void	compute_and_draw(t_state state)
 
 	// Il faut que le premier point soit a WINDOW_WIDTH / 10
 	// Il faut que le dernier point soit a WINDOW_WIDTH / 10 * 9
-	offset_x = WINDOW_WIDTH / 2;
-	offset_y = WINDOW_HEIGHT / 2;
 	if (state.map.width > 1)
 	{
-		measure = 4.0 * (double)WINDOW_WIDTH / 5.0 / ((double)state.map.width
+		measure = 3.0 * (double)WINDOW_WIDTH / 5.0 / ((double)state.map.width
 				- 1.0);
 	}
 	else
 	{
 		measure = 1;
 	}
+	offset_x = (WINDOW_WIDTH - state.map.width * measure * cos(M_PI / 2.5)) / 2;
+	offset_y = WINDOW_HEIGHT / 3;
 	y = 0;
 	while (y < state.map.height)
 	{

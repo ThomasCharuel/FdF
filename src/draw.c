@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:03:46 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/06 22:56:48 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/06 23:05:30 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,13 @@ void	image_put_pixel(t_data *data, int x, int y, int color)
 
 void	reset_image(t_state state)
 {
-	ft_bzero(state.img.addr, WINDOW_HEIGHT * WINDOW_WIDTH
-		* (state.img.bits_per_pixel / 8));
+	size_t	i;
+	int		*image;
+
+	image = (int *)state.img.addr;
+	i = 0;
+	while (i < WINDOW_HEIGHT * WINDOW_WIDTH)
+		image[i++] = 0;
 }
 
 void	rotate_z(t_point *point, double angle)

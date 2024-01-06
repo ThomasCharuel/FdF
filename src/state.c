@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:02:27 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/06 23:33:58 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/06 23:57:53 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@ int	init_state(t_state *state)
 	state->map.map = NULL;
 	state->map.width = 0;
 	state->map.height = 0;
-	state->angle = M_PI / 4;
+	state->angle_rotate_z = M_PI / 4;
 	state->angle_rotate_x = atan(sqrt(2));
 	state->translation_x = 0;
 	state->translation_y = 0;
+	state->scale_factor = 1;
 	state->depth_factor = 0;
 	state->mlx = mlx_init();
 	if (!state->mlx)

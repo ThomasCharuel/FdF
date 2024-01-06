@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:03:46 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/06 23:38:02 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/07 00:00:41 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ void	rotate_z(t_point *point, t_state state)
 
 	x = point->double_x;
 	y = point->double_y;
-	point->double_x = x * cos(state.angle) - y * sin(state.angle);
-	point->double_y = x * sin(state.angle) + y * cos(state.angle);
+	point->double_x = x * cos(state.angle_rotate_z) - y
+		* sin(state.angle_rotate_z);
+	point->double_y = x * sin(state.angle_rotate_z) + y
+		* cos(state.angle_rotate_z);
 }
 
 void	rotate_x(t_point *point, t_state state, double measure)
@@ -81,10 +83,10 @@ void	compute_and_draw(t_state state)
 			state.map.map[y][x].double_y = y * measure;
 			rotate_z(&state.map.map[y][x], state);
 			rotate_x(&state.map.map[y][x], state, measure);
-			state.map.map[y][x].x = (int)state.map.map[y][x].double_x + offset_x
-				+ state.translation_x;
-			state.map.map[y][x].y = (int)state.map.map[y][x].double_y + offset_y
-				+ state.translation_y;
+			state.map.map[y][x].x = (int)(state.map.map[y][x].double_x
+					* state.scale_factor + offset_x + state.translation_x);
+			state.map.map[y][x].y = (int)(state.map.map[y][x].double_y
+					* state.scale_factor + offset_y + state.translation_y);
 			if (x > 0)
 				draw_line(state, state.map.map[y][x], state.map.map[y][x - 1]);
 			if (y > 0)

@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:59:01 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/06 15:40:31 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/06 18:44:50 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@
 
 typedef struct s_point
 {
-	int		projected_x;
-	int		projected_y;
+	int		x;
+	int		y;
 	int		z;
+	double	double_x;
+	double	double_y;
 }			t_point;
 
 typedef struct s_data

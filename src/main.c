@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:51:54 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/06 17:04:48 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/06 17:31:49 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,16 +111,17 @@ void	compute_and_draw(t_state state)
 	int		y;
 
 	measure = 4.0 * (double)WINDOW_HEIGHT / 5.0 / (double)state.map.height;
+	measure = 100;
 	y = 0;
 	while (y < state.map.height)
 	{
 		x = 0;
 		while (x < state.map.width)
 		{
-			state.map.map[y][x].projected_y = (int)(y * measure
-					+ (double)WINDOW_HEIGHT / 10.0);
-			state.map.map[y][x].projected_x = (int)(x * measure
-					+ (double)WINDOW_WIDTH / 10.0);
+			// state.map.map[y][x].projected_y = (int)(y * measure
+			// 		+ (double)WINDOW_HEIGHT / 10.0);
+			// state.map.map[y][x].projected_x = (int)(x * measure
+			// 		+ (double)WINDOW_WIDTH / 10.0);
 			// state.map.map[x][y].projected_x = (int)((double)(x
 			// 			- state.map.map[x][y].z) * cos(DEG_30) * measure
 			// 		+ (double)WINDOW_HEIGHT / 10.0);
@@ -129,8 +130,12 @@ void	compute_and_draw(t_state state)
 			state.map.map[y][x].projected_y = (int)((y + (x
 							+ state.map.map[y][x].z) * sin(DEG_30)) * measure
 					+ (double)WINDOW_HEIGHT / 10.0);
-			ft_printf("%d %d\n", state.map.map[y][x].projected_y,
-				state.map.map[y][x].projected_x);
+			// state.map.map[y][x].projected_x = (int)((x - y) * cos(0.8)
+			// *measure
+			// 		+ (double)WINDOW_WIDTH / 10.0);
+			// state.map.map[y][x].projected_y = (int)(((y + x) * sin(0.8)
+			// 			* measure - state.map.map[y][x].z)
+			// 		+ (double)WINDOW_HEIGHT / 10.0);
 			if (x > 0)
 				draw_line(state, state.map.map[y][x], state.map.map[y][x - 1]);
 			if (y > 0)

@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:59:01 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/05 19:19:46 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/06 15:40:31 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
+# define M_PI 3.14159265358979323846
+# define DEG_30 (M_PI / 6.0)
 
 # define ERROR -1
 # define SUCCESS 0

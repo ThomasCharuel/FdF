@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:03:46 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/06 23:05:30 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/06 23:38:02 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,21 +33,22 @@ void	reset_image(t_state state)
 		image[i++] = 0;
 }
 
-void	rotate_z(t_point *point, double angle)
+void	rotate_z(t_point *point, t_state state)
 {
 	double	y;
 	double	x;
 
 	x = point->double_x;
 	y = point->double_y;
-	point->double_x = x * cos(angle) - y * sin(angle);
-	point->double_y = x * sin(angle) + y * cos(angle);
+	point->double_x = x * cos(state.angle) - y * sin(state.angle);
+	point->double_y = x * sin(state.angle) + y * cos(state.angle);
 }
 
-void	rotate_x(t_point *point, double angle, double measure)
+void	rotate_x(t_point *point, t_state state, double measure)
 {
-	point->double_y = point->double_y * cos(angle) - point->z * measure
-		* sin(angle);
+	point->double_y = point->double_y * cos(state.angle_rotate_x) - (point->z
+			+ 0.1 * state.depth_factor * point->z) * measure
+		* sin(state.angle_rotate_x);
 }
 
 void	compute_and_draw(t_state state)
@@ -78,8 +79,8 @@ void	compute_and_draw(t_state state)
 		{
 			state.map.map[y][x].double_x = x * measure;
 			state.map.map[y][x].double_y = y * measure;
-			rotate_z(&state.map.map[y][x], state.angle);
-			rotate_x(&state.map.map[y][x], atan(sqrt(2)), measure);
+			rotate_z(&state.map.map[y][x], state);
+			rotate_x(&state.map.map[y][x], state, measure);
 			state.map.map[y][x].x = (int)state.map.map[y][x].double_x + offset_x
 				+ state.translation_x;
 			state.map.map[y][x].y = (int)state.map.map[y][x].double_y + offset_y
@@ -94,4 +95,5 @@ void	compute_and_draw(t_state state)
 	}
 	ft_printf("X: %d, y: %d\n", state.translation_x, state.translation_y);
 	mlx_put_image_to_window(state.mlx, state.win, state.img.img, 0, 0);
+	mlx_do_sync(state.mlx);
 }

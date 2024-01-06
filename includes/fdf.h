@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:59:01 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/06 22:52:34 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/06 23:33:59 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@
 # define ABS(_x) ((_x) >= 0 ? (_x) : -(_x))
 # define SGN(_x) ((_x) < 0 ? -1 : ((_x) > 0 ? 1 : 0))
 # define MOUSE_LEFT_CLICK 1
+# define MOUSE_WHEEL_UP 4
+# define MOUSE_WHEEL_DOWN 5
 
 # define ERROR -1
 # define SUCCESS 0
@@ -64,6 +66,9 @@ typedef struct s_state
 	t_data	img;
 	t_map	map;
 	double	angle;
+	double	angle_rotate_x;
+	int		depth_factor;
+	int		scale_factor;
 	int		translation_x;
 	int		translation_y;
 }			t_state;

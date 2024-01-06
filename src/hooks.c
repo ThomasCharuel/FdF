@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 11:06:00 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/06 22:24:47 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/06 23:34:07 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,21 @@ int	handle_mouse_hook(int button, int x, int y, t_state *state)
 	static int	prev_y;
 
 	ft_printf("Button: %d x:%d y:%d\n", button, x, y);
-	if (prev_button == button)
+	if (button == MOUSE_LEFT_CLICK && prev_button == button)
 	{
-		if (button == MOUSE_LEFT_CLICK)
-		{
-			state->translation_x += x - prev_x;
-			state->translation_y += y - prev_y;
-			compute_and_draw(*state);
-		}
+		state->translation_x += x - prev_x;
+		state->translation_y += y - prev_y;
+		compute_and_draw(*state);
+	}
+	else if (button == MOUSE_WHEEL_DOWN)
+	{
+		state->depth_factor += 1;
+		compute_and_draw(*state);
+	}
+	else if (button == MOUSE_WHEEL_UP)
+	{
+		state->depth_factor -= 1;
+		compute_and_draw(*state);
 	}
 	prev_button = button;
 	prev_x = x;

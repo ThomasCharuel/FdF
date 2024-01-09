@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 11:06:00 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 14:24:36 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:09:33 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,42 @@ int	handle_key_hook(int keycode, t_state *state)
 		state->angle_rotate_x += M_PI / 16;
 	else if (keycode == XK_Down)
 		state->angle_rotate_x -= M_PI / 16;
+	else if (keycode == XK_w)
+	{
+		state->angle_rotate_z = 0;
+		state->angle_rotate_x = 0;
+		state->angle_rotate_y = 0;
+	}
+	else if (keycode == XK_x)
+	{
+		state->angle_rotate_z = 0;
+		state->angle_rotate_x = M_PI;
+		state->angle_rotate_y = 0;
+	}
+	else if (keycode == XK_a)
+	{
+		state->angle_rotate_z = 0;
+		state->angle_rotate_x = M_PI / 2;
+		state->angle_rotate_y = -M_PI / 2;
+	}
+	else if (keycode == XK_s)
+	{
+		state->angle_rotate_z = 0;
+		state->angle_rotate_x = M_PI / 2;
+		state->angle_rotate_y = 0;
+	}
+	else if (keycode == XK_d)
+	{
+		state->angle_rotate_z = 0;
+		state->angle_rotate_x = M_PI / 2;
+		state->angle_rotate_y = M_PI;
+	}
+	else if (keycode == XK_f)
+	{
+		state->angle_rotate_z = 0;
+		state->angle_rotate_x = M_PI / 2;
+		state->angle_rotate_y = M_PI / 2;
+	}
 	compute_and_draw(*state);
 	return (SUCCESS);
 }

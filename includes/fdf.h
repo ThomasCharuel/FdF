@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:59:01 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 14:15:38 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 16:15:44 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_point
 	double	init_z;
 	double	proj_x;
 	double	proj_y;
+	double	proj_z;
 }			t_point;
 
 typedef struct s_data
@@ -77,6 +78,7 @@ typedef struct s_state
 	double	offset_y;
 	double	angle_rotate_z;
 	double	angle_rotate_x;
+	double	angle_rotate_y;
 	double	depth_factor;
 	double	scale_factor;
 }			t_state;

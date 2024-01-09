@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:02:27 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 14:10:43 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:58:19 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ void	setup_state_params(t_state *state)
 
 	state->angle_rotate_z = M_PI / 4;
 	state->angle_rotate_x = atan(sqrt(2));
+	state->angle_rotate_y = 0;
 	state->scale_factor = 1;
 	state->depth_factor = 0;
 	if (state->map.width > 1)

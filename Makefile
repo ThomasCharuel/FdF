@@ -6,7 +6,7 @@
 #    By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 13:51:51 by tcharuel          #+#    #+#              #
-#    Updated: 2024/01/09 18:15:20 by tcharuel         ###   ########.fr        #
+#    Updated: 2024/01/09 18:36:29 by tcharuel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,16 +30,16 @@ CC = cc
 CFLAGS = -o2 -Wextra -Wall -Werror
 RM = rm -f
 
-all: $(NAME)
-
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER_DIR)/$(NAME).h | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I$(HEADER_DIR)/ -c -o $@ $<
 
 $(NAME): $(LIBFT) $(OBJ)
 	$(CC) $(CFLAGS) $(OBJ) -L$(LIBFT_DIR) -L$(MLX_DIR) -lft -lmlx -lXext -lX11 -lm -o $@
+
+all: $(NAME)
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 $(LIBFT):
 	make -C $(LIBFT_DIR)
@@ -54,4 +54,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: $(NAME) all clean fclean re
+.PHONY: all clean fclean re

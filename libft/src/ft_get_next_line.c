@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/09 11:27:57 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 11:37:08 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:29:36 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	ft_reset(char **line, char **newline, size_t *to_count)
 	}
 }
 
-char	*gnl(int fd)
+char	*get_next_line(int fd)
 {
 	static char	buf[BUFFER_SIZE + 1];
 	char		*newline;

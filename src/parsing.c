@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 11:47:25 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 11:38:31 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:15:47 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,27 +101,19 @@ int	parse_map(char *file_path, t_map *map)
 	int		fd;
 	char	*line;
 
-	fd = open(file_path, O_RDONLY);
-	if (fd == -1)
-	{
-		ft_printf(strerror(errno));
+	fd = open_file(file_path);
+	if (fd == ERROR)
 		return (ERROR);
-	}
-	line = get_next_line(fd);
+	line = get_first_line(fd, map);
 	if (!line)
-	{
-		ft_printf("Empty file.");
-		close(fd);
 		return (ERROR);
-	}
-	map->width = compute_width(line);
 	while (line)
 	{
 		if (add_line_to_map(map, line) == ERROR)
 		{
-			free(line);
 			ft_printf("Memory error.");
 			close(fd);
+			free(line);
 			return (ERROR);
 		}
 		free(line);

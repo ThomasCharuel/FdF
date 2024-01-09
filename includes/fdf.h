@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:59:01 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 18:02:13 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:18:21 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,10 @@ int			handle_mouse_move(int x, int y, t_state *state);
 int			handle_key_hook(int keycode, t_state *state);
 
 int			parse_map(char *file_path, t_map *map);
+int			compute_width(char *line);
+
+int			open_file(char *file_path);
+char		*get_first_line(int fd, t_map *map);
 
 void		draw_line(t_state state, t_point start, t_point dest);
 

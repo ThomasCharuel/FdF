@@ -6,17 +6,35 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:02:27 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 17:53:43 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:19:37 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
+void	init_map(t_state *state, double measure)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < state->map.height)
+	{
+		x = 0;
+		while (x < state->map.width)
+		{
+			state->map.map[y][x].init_x = x * measure;
+			state->map.map[y][x].init_y = y * measure;
+			state->map.map[y][x].init_z = state->map.map[y][x].z * measure;
+			x++;
+		}
+		y++;
+	}
+}
+
 void	setup_state_params(t_state *state)
 {
 	double	measure;
-	int		x;
-	int		y;
 
 	state->angle_rotate_z = M_PI / 4;
 	state->angle_rotate_x = atan(sqrt(2));
@@ -34,19 +52,7 @@ void	setup_state_params(t_state *state)
 	state->offset_x = (WINDOW_WIDTH - (state->map.width - 1) * measure
 			* cos(0.6109)) / 2;
 	state->offset_y = WINDOW_HEIGHT / 3;
-	y = 0;
-	while (y < state->map.height)
-	{
-		x = 0;
-		while (x < state->map.width)
-		{
-			state->map.map[y][x].init_x = x * measure;
-			state->map.map[y][x].init_y = y * measure;
-			state->map.map[y][x].init_z = state->map.map[y][x].z * measure;
-			x++;
-		}
-		y++;
-	}
+	init_map(state, measure);
 }
 
 int	init_state(t_state *state)
@@ -85,7 +91,7 @@ void	cleanup_map(t_map map)
 	free(map.map);
 }
 
-void	cleanup_state(t_state *state)
+int	cleanup_exit(t_state *state)
 {
 	if (state->win)
 		mlx_destroy_window(state->mlx, state->win);
@@ -98,10 +104,5 @@ void	cleanup_state(t_state *state)
 		mlx_destroy_display(state->mlx);
 		free(state->mlx);
 	}
-}
-
-int	cleanup_exit(t_state *state)
-{
-	cleanup_state(state);
 	exit(SUCCESS);
 }

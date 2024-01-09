@@ -6,7 +6,7 @@
 #    By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 13:51:51 by tcharuel          #+#    #+#              #
-#    Updated: 2024/01/09 17:55:47 by tcharuel         ###   ########.fr        #
+#    Updated: 2024/01/09 18:15:20 by tcharuel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ HEADER_DIR = includes
 SRC_DIR = src
 OBJ_DIR = obj
 
-SRC_FILES = bresenham.c draw.c hooks.c main.c parsing.c state.c
+SRC_FILES = bresenham.c draw.c hooks.c main.c parsing.c parsing_2.c state.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))

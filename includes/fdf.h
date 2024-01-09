@@ -6,15 +6,15 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:59:01 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 16:15:44 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 18:02:13 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
+# include "../../minilibx/mlx.h"
 # include "../libft/includes/libft.h"
-# include "/home/tcharuel/Desktop/minilibx/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <errno.h>
@@ -25,8 +25,8 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 # define M_PI 3.14159265358979323846
-# define ABS(_x) ((_x) >= 0 ? (_x) : -(_x))
-# define SGN(_x) ((_x) < 0 ? -1 : ((_x) > 0 ? 1 : 0))
+# define ABS(a) ((a) >= 0 ? (a) : -(a))
+# define SGN(a) (((a) < 0) ? -1 : ((a) > 0))
 # define MOUSE_LEFT_CLICK 1
 # define MOUSE_RIGHT_CLICK 3
 # define MOUSE_WHEEL_UP 4

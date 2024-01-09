@@ -6,11 +6,34 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 11:06:00 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 15:09:33 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:47:33 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	change_angles(t_state *state, double z, double x, double y)
+{
+	state->angle_rotate_z = z;
+	state->angle_rotate_x = x;
+	state->angle_rotate_y = y;
+}
+
+void	handle_angle_key(int keycode, t_state *state)
+{
+	if (keycode == XK_w)
+		change_angles(state, 0, 0, 0);
+	else if (keycode == XK_x)
+		change_angles(state, 0, M_PI, 0);
+	else if (keycode == XK_a)
+		change_angles(state, 0, M_PI / 2, -M_PI / 2);
+	else if (keycode == XK_s)
+		change_angles(state, 0, M_PI / 2, 0);
+	else if (keycode == XK_d)
+		change_angles(state, 0, M_PI / 2, M_PI);
+	else if (keycode == XK_f)
+		change_angles(state, 0, M_PI / 2, M_PI / 2);
+}
 
 int	handle_key_hook(int keycode, t_state *state)
 {
@@ -28,42 +51,7 @@ int	handle_key_hook(int keycode, t_state *state)
 		state->angle_rotate_x += M_PI / 16;
 	else if (keycode == XK_Down)
 		state->angle_rotate_x -= M_PI / 16;
-	else if (keycode == XK_w)
-	{
-		state->angle_rotate_z = 0;
-		state->angle_rotate_x = 0;
-		state->angle_rotate_y = 0;
-	}
-	else if (keycode == XK_x)
-	{
-		state->angle_rotate_z = 0;
-		state->angle_rotate_x = M_PI;
-		state->angle_rotate_y = 0;
-	}
-	else if (keycode == XK_a)
-	{
-		state->angle_rotate_z = 0;
-		state->angle_rotate_x = M_PI / 2;
-		state->angle_rotate_y = -M_PI / 2;
-	}
-	else if (keycode == XK_s)
-	{
-		state->angle_rotate_z = 0;
-		state->angle_rotate_x = M_PI / 2;
-		state->angle_rotate_y = 0;
-	}
-	else if (keycode == XK_d)
-	{
-		state->angle_rotate_z = 0;
-		state->angle_rotate_x = M_PI / 2;
-		state->angle_rotate_y = M_PI;
-	}
-	else if (keycode == XK_f)
-	{
-		state->angle_rotate_z = 0;
-		state->angle_rotate_x = M_PI / 2;
-		state->angle_rotate_y = M_PI / 2;
-	}
+	handle_angle_key(keycode, state);
 	compute_and_draw(*state);
 	return (SUCCESS);
 }

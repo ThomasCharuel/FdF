@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:03:46 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 16:31:32 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:43:28 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,16 @@ void	reset_image(t_state state)
 	}
 }
 
-void	rotate_z(t_point *point, t_state state)
+void	apply_rotations(t_point *point, t_state state)
 {
 	point->proj_x = point->init_x * cos(state.angle_rotate_z) - point->init_y
 		* sin(state.angle_rotate_z);
 	point->proj_y = point->init_x * sin(state.angle_rotate_z) + point->init_y
 		* cos(state.angle_rotate_z);
-}
-
-void	rotate_x(t_point *point, t_state state)
-{
 	point->proj_z = point->proj_y * sin(state.angle_rotate_x) + (point->init_z
 			+ state.depth_factor * point->init_z) * cos(state.angle_rotate_x);
 	point->proj_y = point->proj_y * cos(state.angle_rotate_x) - (point->init_z
 			+ state.depth_factor * point->init_z) * sin(state.angle_rotate_x);
-}
-
-void	rotate_y(t_point *point, t_state state)
-{
 	point->proj_x = point->proj_x * cos(state.angle_rotate_y) + (point->proj_z)
 		* sin(state.angle_rotate_y);
 }
@@ -71,9 +63,7 @@ void	compute_and_draw(t_state state)
 		x = 0;
 		while (x < state.map.width)
 		{
-			rotate_z(&state.map.map[y][x], state);
-			rotate_x(&state.map.map[y][x], state);
-			rotate_y(&state.map.map[y][x], state);
+			apply_rotations(&state.map.map[y][x], state);
 			state.map.map[y][x].x = (int)(state.map.map[y][x].proj_x
 					* state.scale_factor + state.offset_x);
 			state.map.map[y][x].y = (int)(state.map.map[y][x].proj_y

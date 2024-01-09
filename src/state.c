@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:02:27 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 17:40:06 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:53:43 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ void	setup_state_params(t_state *state)
 	state->depth_factor = 0;
 	if (state->map.width > 1)
 		measure = 3.0 * (double)WINDOW_WIDTH / 5.0 / ((double)state->map.width
+				- 1.0);
+	else if (state->map.height > 1)
+		measure = 3.0 * (double)WINDOW_HEIGHT / 5.0 / ((double)state->map.height
 				- 1.0);
 	else
 		measure = 1;

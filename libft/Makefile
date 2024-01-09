@@ -6,7 +6,7 @@
 #    By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/02 13:33:40 by tcharuel          #+#    #+#              #
-#    Updated: 2024/01/09 11:27:37 by tcharuel         ###   ########.fr        #
+#    Updated: 2024/01/09 17:55:39 by tcharuel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,7 @@ SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))
 OBJ = $(addprefix $(OBJ_DIR)/, $(SRC_FILES:.c=.o))
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -o2 -Wall -Wextra -Werror
 RM = rm -f
 
 all: $(NAME)

@@ -6,7 +6,7 @@
 #    By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/06 13:51:51 by tcharuel          #+#    #+#              #
-#    Updated: 2024/01/09 12:22:20 by tcharuel         ###   ########.fr        #
+#    Updated: 2024/01/09 17:55:47 by tcharuel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ LIBFT_DIR = libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
 CC = cc
-CFLAGS = -g3 -Wextra -Wall -Werror
+CFLAGS = -o2 -Wextra -Wall -Werror
 RM = rm -f
 
 all: $(NAME)

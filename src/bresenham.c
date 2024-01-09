@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 22:01:47 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/06 22:02:57 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:02:08 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	draw_line(t_state state, t_point start, t_point dest)
 
 	dx = dest.x - start.x;
 	dy = dest.y - start.y;
+	image_put_pixel(&state.img, start.x, start.y, 0xFFFFFF);
 	if (dy == 0)
 		draw_horizontal_line(state, start, dest);
 	else if (dx == 0)

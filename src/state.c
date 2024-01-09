@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:02:27 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 14:58:19 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 17:40:06 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	setup_state_params(t_state *state)
 				- 1.0);
 	else
 		measure = 1;
-	state->offset_x = (WINDOW_WIDTH - state->map.width * measure * cos(M_PI
-				/ 2.5)) / 2;
+	state->offset_x = (WINDOW_WIDTH - (state->map.width - 1) * measure
+			* cos(0.6109)) / 2;
 	state->offset_y = WINDOW_HEIGHT / 3;
 	y = 0;
 	while (y < state->map.height)

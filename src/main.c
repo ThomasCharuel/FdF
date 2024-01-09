@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:51:54 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/07 00:07:09 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:10:25 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 		if (init_state(&state) == ERROR || parse_map(argv[1],
 				&(state.map)) == ERROR)
 			cleanup_exit(&state);
+		setup_state_params(&state);
 		compute_and_draw(state);
 		mlx_key_hook(state.win, handle_key_hook, &state);
 		mlx_mouse_hook(state.win, handle_mouse_hook, &state);

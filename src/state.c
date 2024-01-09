@@ -6,11 +6,44 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:02:27 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/06 23:57:53 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:23:26 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	setup_state_params(t_state *state)
+{
+	double	measure;
+	int		x;
+	int		y;
+
+	state->angle_rotate_z = M_PI / 4;
+	state->angle_rotate_x = atan(sqrt(2));
+	state->scale_factor = 1;
+	state->depth_factor = 0;
+	if (state->map.width > 1)
+		measure = 3.0 * (double)WINDOW_WIDTH / 5.0 / ((double)state->map.width
+				- 1.0);
+	else
+		measure = 1;
+	state->offset_x = (WINDOW_WIDTH - state->map.width * measure * cos(M_PI
+				/ 2.5)) / 2;
+	state->offset_y = WINDOW_HEIGHT / 3;
+	y = 0;
+	while (y < state->map.height)
+	{
+		x = 0;
+		while (x < state->map.width)
+		{
+			state->map.map[y][x].init_x = x * measure;
+			state->map.map[y][x].init_y = y * measure;
+			state->map.map[y][x].init_z = state->map.map[y][x].z * measure;
+			x++;
+		}
+		y++;
+	}
+}
 
 int	init_state(t_state *state)
 {
@@ -19,12 +52,6 @@ int	init_state(t_state *state)
 	state->map.map = NULL;
 	state->map.width = 0;
 	state->map.height = 0;
-	state->angle_rotate_z = M_PI / 4;
-	state->angle_rotate_x = atan(sqrt(2));
-	state->translation_x = 0;
-	state->translation_y = 0;
-	state->scale_factor = 1;
-	state->depth_factor = 0;
 	state->mlx = mlx_init();
 	if (!state->mlx)
 		return (ERROR);
@@ -37,6 +64,7 @@ int	init_state(t_state *state)
 	state->img.addr = mlx_get_data_addr(state->img.img,
 			&state->img.bits_per_pixel, &state->img.line_length,
 			&state->img.endian);
+	state->img.bytes_per_pixel = state->img.bits_per_pixel / 8;
 	return (SUCCESS);
 }
 

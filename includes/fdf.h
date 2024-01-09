@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:59:01 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/06 23:51:43 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:24:58 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ typedef struct s_point
 	int		x;
 	int		y;
 	int		z;
-	double	double_x;
-	double	double_y;
+	double	init_x;
+	double	init_y;
+	double	init_z;
+	double	proj_x;
+	double	proj_y;
 }			t_point;
 
 typedef struct s_data
@@ -48,6 +51,7 @@ typedef struct s_data
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
+	int		bytes_per_pixel;
 	int		line_length;
 	int		endian;
 }			t_data;
@@ -65,15 +69,17 @@ typedef struct s_state
 	void	*win;
 	t_data	img;
 	t_map	map;
+	double	measure;
+	double	offset_x;
+	double	offset_y;
 	double	angle_rotate_z;
 	double	angle_rotate_x;
-	int		depth_factor;
+	double	depth_factor;
 	double	scale_factor;
-	int		translation_x;
-	int		translation_y;
 }			t_state;
 
 int			init_state(t_state *state);
+void		setup_state_params(t_state *state);
 int			cleanup_exit(t_state *state);
 
 void		reset_image(t_state state);

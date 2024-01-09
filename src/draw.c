@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:03:46 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 11:41:11 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:27:57 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	image_put_pixel(t_data *data, int x, int y, int color)
 
 	if (!(x > 0 && x < WINDOW_WIDTH && y > 0 && y < WINDOW_HEIGHT))
 		return ;
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	dst = data->addr + (y * data->line_length + x * data->bytes_per_pixel);
 	*(unsigned int *)dst = color;
 }
 
@@ -39,58 +39,37 @@ void	reset_image(t_state state)
 
 void	rotate_z(t_point *point, t_state state)
 {
-	double	y;
-	double	x;
-
-	x = point->double_x;
-	y = point->double_y;
-	point->double_x = x * cos(state.angle_rotate_z) - y
+	point->proj_x = point->init_x * cos(state.angle_rotate_z) - point->init_y
 		* sin(state.angle_rotate_z);
-	point->double_y = x * sin(state.angle_rotate_z) + y
+	point->proj_y = point->init_x * sin(state.angle_rotate_z) + point->init_y
 		* cos(state.angle_rotate_z);
 }
 
-void	rotate_x(t_point *point, t_state state, double measure)
+void	rotate_x(t_point *point, t_state state)
 {
-	point->double_y = point->double_y * cos(state.angle_rotate_x) - (point->z
-			+ 0.1 * state.depth_factor * point->z) * measure
-		* sin(state.angle_rotate_x);
+	printf("Zoom: %f\n", state.depth_factor);
+	point->proj_y = point->proj_y * cos(state.angle_rotate_x) - (point->init_z
+			+ state.depth_factor * point->init_z) * sin(state.angle_rotate_x);
 }
 
 void	compute_and_draw(t_state state)
 {
-	double measure;
-	int x;
-	int y;
-	int offset_x;
-	int offset_y;
+	int	x;
+	int	y;
 
 	reset_image(state);
-	if (state.map.width > 1)
-	{
-		measure = 3.0 * (double)WINDOW_WIDTH / 5.0 / ((double)state.map.width
-				- 1.0);
-	}
-	else
-	{
-		measure = 1;
-	}
-	offset_x = (WINDOW_WIDTH - state.map.width * measure * cos(M_PI / 2.5)) / 2;
-	offset_y = WINDOW_HEIGHT / 3;
 	y = 0;
 	while (y < state.map.height)
 	{
 		x = 0;
 		while (x < state.map.width)
 		{
-			state.map.map[y][x].double_x = x * measure;
-			state.map.map[y][x].double_y = y * measure;
 			rotate_z(&state.map.map[y][x], state);
-			rotate_x(&state.map.map[y][x], state, measure);
-			state.map.map[y][x].x = (int)(state.map.map[y][x].double_x
-					* state.scale_factor + offset_x + state.translation_x);
-			state.map.map[y][x].y = (int)(state.map.map[y][x].double_y
-					* state.scale_factor + offset_y + state.translation_y);
+			rotate_x(&state.map.map[y][x], state);
+			state.map.map[y][x].x = (int)(state.map.map[y][x].proj_x
+					* state.scale_factor + state.offset_x);
+			state.map.map[y][x].y = (int)(state.map.map[y][x].proj_y
+					* state.scale_factor + state.offset_y);
 			if (x > 0)
 				draw_line(state, state.map.map[y][x], state.map.map[y][x - 1]);
 			if (y > 0)

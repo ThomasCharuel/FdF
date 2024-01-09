@@ -6,7 +6,7 @@
 #    By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/02 13:33:40 by tcharuel          #+#    #+#              #
-#    Updated: 2024/01/05 14:58:52 by tcharuel         ###   ########.fr        #
+#    Updated: 2024/01/09 11:27:37 by tcharuel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,6 @@ SRC_FILES = ft_isalpha.c \
 	ft_substring.c \
 	ft_maths.c \
 	ft_get_next_line.c \
-	ft_get_next_line_utils.c \
 	ft_free_strs.c
 
 SRC = $(addprefix $(SRC_DIR)/, $(SRC_FILES))

@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 15:01:58 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/05 14:59:10 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 11:28:20 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,8 +127,6 @@ int					ft_min(int count, ...);
 int					ft_max(int count, ...);
 
 char				*get_next_line(int fd);
-ssize_t				read_in_stash(int fd, char **stash);
-char				*pick_line_in_stash(char **stash);
 
 size_t				ft_strlen_delimiter(const char *s, char c);
 char				*ft_strdup_lf(const char *src);

@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:03:46 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/07 00:00:41 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 11:38:18 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ void	compute_and_draw(t_state state)
 		}
 		y++;
 	}
-	ft_printf("X: %d, y: %d\n", state.translation_x, state.translation_y);
 	mlx_put_image_to_window(state.mlx, state.win, state.img.img, 0, 0);
 	mlx_do_sync(state.mlx);
 }

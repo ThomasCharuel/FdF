@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 11:47:25 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/07 00:10:17 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 11:38:31 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	add_line_to_map(t_map *map, char *line)
 {
 	t_point	**new_map;
 
-	ft_printf("%d %d Line: %s\n", compute_width(line), check_line(line), line);
 	if (check_line(line) == ERROR || compute_width(line) != map->width)
 		return (ERROR);
 	map->height++;

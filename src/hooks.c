@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 11:06:00 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/07 00:03:33 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 11:38:23 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ int	handle_key_hook(int keycode, t_state *state)
 		state->scale_factor *= 0.9;
 		compute_and_draw(*state);
 	}
-	printf("Scale: %f\n", state->scale_factor);
 	return (SUCCESS);
 }
 

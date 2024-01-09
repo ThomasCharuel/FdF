@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:03:46 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 11:38:18 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 11:41:11 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,11 @@ void	reset_image(t_state state)
 	image = (int *)state.img.addr;
 	i = 0;
 	while (i < WINDOW_HEIGHT * WINDOW_WIDTH)
-		image[i++] = 0;
+	{
+		if (image[i] != 0)
+			image[i] = 0;
+		i++;
+	}
 }
 
 void	rotate_z(t_point *point, t_state state)

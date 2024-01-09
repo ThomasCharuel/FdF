@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:51:54 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 12:10:25 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:53:55 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,13 @@ int	main(int argc, char **argv)
 			cleanup_exit(&state);
 		setup_state_params(&state);
 		compute_and_draw(state);
-		mlx_key_hook(state.win, handle_key_hook, &state);
-		mlx_mouse_hook(state.win, handle_mouse_hook, &state);
+		mlx_hook(state.win, KeyPress, KeyPressMask, handle_key_hook, &state);
+		mlx_hook(state.win, ButtonPress, ButtonPressMask, handle_mouse_press,
+			&state);
+		mlx_hook(state.win, ButtonRelease, ButtonReleaseMask,
+			handle_mouse_release, &state);
+		mlx_hook(state.win, MotionNotify, PointerMotionMask, handle_mouse_move,
+			&state);
 		mlx_hook(state.win, DestroyNotify, NoEventMask, cleanup_exit, &state);
 		mlx_loop(state.mlx);
 	}

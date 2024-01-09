@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 13:59:01 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 12:24:58 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 13:55:34 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ typedef struct s_state
 	void	*win;
 	t_data	img;
 	t_map	map;
+	int		button_pressed;
+	int		prev_mouse_x;
+	int		prev_mouse_y;
 	double	measure;
 	double	offset_x;
 	double	offset_y;
@@ -88,7 +91,9 @@ void		compute_and_draw(t_state state);
 
 int			cleanup_exit(t_state *state);
 
-int			handle_mouse_hook(int button, int x, int y, t_state *state);
+int			handle_mouse_press(int button, int x, int y, t_state *state);
+int			handle_mouse_release(int button, int x, int y, t_state *state);
+int			handle_mouse_move(int x, int y, t_state *state);
 int			handle_key_hook(int keycode, t_state *state);
 
 int			parse_map(char *file_path, t_map *map);

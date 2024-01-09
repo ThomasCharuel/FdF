@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 18:03:46 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 12:27:57 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 12:48:06 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ void	rotate_z(t_point *point, t_state state)
 
 void	rotate_x(t_point *point, t_state state)
 {
-	printf("Zoom: %f\n", state.depth_factor);
 	point->proj_y = point->proj_y * cos(state.angle_rotate_x) - (point->init_z
 			+ state.depth_factor * point->init_z) * sin(state.angle_rotate_x);
 }

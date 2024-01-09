@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 12:02:27 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 13:56:02 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/09 14:10:43 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	init_state(t_state *state)
 {
 	state->mlx = NULL;
 	state->win = NULL;
-	state->button_pressed = 0;
 	state->map.map = NULL;
 	state->map.width = 0;
 	state->map.height = 0;

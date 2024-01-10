@@ -6,7 +6,7 @@
 /*   By: tcharuel <tcharuel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 11:47:25 by tcharuel          #+#    #+#             */
-/*   Updated: 2024/01/09 18:15:47 by tcharuel         ###   ########.fr       */
+/*   Updated: 2024/01/10 15:29:46 by tcharuel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ t_point	*line_to_point_list(char *line, int length)
 		return (NULL);
 	}
 	i = 0;
-	while (elements[i])
+	while (i < length)
 	{
 		res[i].z = ft_atoi(elements[i]);
 		i++;
